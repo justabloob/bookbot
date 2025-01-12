@@ -15,7 +15,8 @@ def get_book_text(book_path): # function to get the text from the book
 # and we can add more features easily
 
 def count_words(text): # function to count the words in the text
-    return len(text.split()) # split() splits the text into a list of words
+    words = text.split() # split() splits the text into a list of words
+    return len(words) # having the variable words makes it more readable and easier to modify later
     # len() counts the number of items in the list
 
 main()
