@@ -1,8 +1,10 @@
 def main():
-    line_count = 0
-    with open("books/frankenstein.txt") as f:
-        for line in f:
-            print(line.strip())
-            line_count += 1
-    print(f"Line count: {line_count}")
+    book_path = "books/frankenstein.txt"
+    text = get_text(book_path)
+    print(text)
+
+def get_text(book_path):
+    with open(book_path) as f:
+        return f.read()
+
 main()
