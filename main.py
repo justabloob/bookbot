@@ -23,10 +23,11 @@ def count_characters(text): # function to count the characters in the text
     lowered_characters = text.lower()
     characters = {}
     for character in lowered_characters:
-        if character in characters:
-            characters[character] += 1
-        else:
-            characters[character] = 1
+        if character.isalpha():
+            if character in characters:
+                characters[character] += 1
+            else:
+                characters[character] = 1
     return characters
 
 main()
