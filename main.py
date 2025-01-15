@@ -8,15 +8,15 @@ def main():
     book_path = "books/frankenstein.txt" # stablish the path to the book
     text = get_book_text(book_path) # get the text from the book
     word_count = count_words(text) 
-    characters = count_characters(text)
-    # Convert dictionary to a list of dictionaries
-    chars_ls = [{"char": char, "num": count} for char, count in characters.items()]
-    chars_ls.sort(reverse=True, key=sort_characters)
-    print(f"--- Begin report of books/frankenstein.txt ---")
+    chars_dict = count_characters(text)
+    chars_ls = chars_dict_to_sorted_ls(chars_dict)
+
+    print(f"--- Begin report of {book_path} ---")
     print(f"{word_count} words found in the document")
-    print(f" ")
+    
     for char in chars_ls:
         print(f"The '{char['char']}' character was found {char['num']} times")
+    
     print(f"--- End report ---")
 
 def get_book_text(book_path): # function to get the text from the book
@@ -42,4 +42,11 @@ def count_characters(text): # function to count the characters in the text
 def sort_characters(chars): # function to sort the characters by frequency
     return chars["num"]
 
+def chars_dict_to_sorted_ls(chars_dict): # function to convert the dictionary to a list of dictionaries
+    chars_ls = []
+    for char in chars_dict:
+        chars_ls.append({"char": char, "num": chars_dict[char]}) 
+    chars_ls.sort(reverse=True, key=sort_characters) # sort the list of dictionaries by the value of the key "num"
+    return chars_ls
+    
 main()
