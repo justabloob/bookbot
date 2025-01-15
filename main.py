@@ -8,8 +8,10 @@ def main():
     book_path = "books/frankenstein.txt" # stablish the path to the book
     text = get_book_text(book_path) # get the text from the book
     word_count = count_words(text) 
-    character_count = count_characters(text) 
-    print(f"Character count: {character_count}")
+    characters = count_characters(text)
+    print(f"--- Begin report of books/frankenstein.txt ---")
+    print(f"{word_count} words found in the document")
+    print(chars_ls)
 
 def get_book_text(book_path): # function to get the text from the book
     with open(book_path) as f: # f is our opened file
@@ -30,5 +32,17 @@ def count_characters(text): # function to count the characters in the text
             else:
                 chars[char] = 1
     return chars
+
+# Create a dictionary of character frequencies
+chars = count_characters("Counting characters")
+
+# Convert dictionary to a list of dictionaries
+chars_ls = [{"char": char, "num": count} for char, count in chars.items()]
+
+def sort_characters(chars): # function to sort the characters by frequency
+    return chars["num"]
+
+chars_ls.sort(reverse=True, key=sort_characters)
+
 
 main()
